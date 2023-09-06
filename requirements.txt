@@ -1,0 +1,7 @@
+pandas>=1.4.1
+scikit-learn>=1.0.3
+SudachiPy>=0.6.1
+gensim>=4.3.0
+torch>=1.11.0
+fastapi>=0.70.0
+uvicorn>=0.15.0
