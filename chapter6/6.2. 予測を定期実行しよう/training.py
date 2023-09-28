@@ -6,8 +6,7 @@ from joblib import dump
 # ランダムな回帰データセットを生成します
 X, y = make_regression(n_samples=1000, n_features=10)
 # データセットを訓練データとテストデータに分割します
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_
-size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 # 線形回帰モデルを初期化します
 model = LinearRegression()
 
