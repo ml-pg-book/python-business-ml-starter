@@ -1,11 +1,9 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import pickle
-from sklearn.linear_model import LinearRegression
 
 # 保存したモデルを読み込む
-with open("artifact/model.pkl", "rb") as f:
+with open("model.pkl", "rb") as f:
     model = pickle.load(f)
 
 # スライダーで入力を受け付ける関数

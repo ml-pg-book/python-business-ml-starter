@@ -4,7 +4,7 @@ import pandas as pd
 from pydantic import BaseModel
 
 # 保存したモデルを読み込む
-with open("artifact/model.pkl", "rb") as f:
+with open("model.pkl", "rb") as f:
     model = pickle.load(f)
 
 app = FastAPI()
