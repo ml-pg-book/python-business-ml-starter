@@ -1,28 +1,22 @@
 from fastapi import FastAPI
-import pickle
 import pandas as pd
 from pydantic import BaseModel
+from joblib import load
 
 # 保存したモデルを読み込む
-with open("model.pkl", "rb") as f:
-    model = pickle.load(f)
+model = load("model.pkl")
 
 app = FastAPI()
 
 class RealEstateInput(BaseModel):
-    square_meter: float
-    floor: int
-    year_from_built: int
-    distance_from_station: int
-    station_name: str
+    house_area: float
+    distance: int
 
 @app.post("/predict")
 def predict_price(input_data: RealEstateInput):
     data = {
-        "square_meter": [input_data.square_meter],
-        "floor": [input_data.floor],
-        "year_from_built": [input_data.year_from_built],
-        "distance_from_station": [input_data.distance_from_station]
+        "house_area": [input_data.house_area],
+        "distance": [input_data.distance]
     }
 
     input_df = pd.DataFrame(data)

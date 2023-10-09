@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 from joblib import load
 
+# コマンドライン引数から入力データと出力データのパスを取得
 input_data_path = sys.argv[1]
 output_data_path = sys.argv[2]
 

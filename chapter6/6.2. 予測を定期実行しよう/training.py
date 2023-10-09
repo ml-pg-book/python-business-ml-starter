@@ -1,7 +1,4 @@
-import sys
 from sklearn.linear_model import Ridge
-from sklearn.model_selection import train_test_split
-from sklearn.datasets import make_regression
 from joblib import dump
 import pandas as pd
 
@@ -10,7 +7,7 @@ df.head()
 
 # 予測したい列(正解データ)
 target_col = "rent_price"
-# 使いたい特徴量
+# 特徴量
 feature_cols = ['house_area', 'distance']
 y = df[target_col]
 X = df[feature_cols]

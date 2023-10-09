@@ -1,19 +1,19 @@
-import sys
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.datasets import make_regression
+from sklearn.linear_model import Ridge
 from joblib import dump
+import pandas as pd
 
+df = pd.read_csv("realestate_train.csv")
+df.head()
 
-# ランダムな回帰データセットを生成します
-X, y = make_regression(n_samples=1000, n_features=10)
-# データセットを訓練データとテストデータに分割します
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-# 線形回帰モデルを初期化します
-model = LinearRegression()
+# 予測したい列(正解データ)
+target_col = "rent_price"
+# 特徴量
+feature_cols = ['house_area', 'distance']
+y = df[target_col]
+X = df[feature_cols]
+# モデルの学習
+model = Ridge()
+model.fit(X, y)
 
-
-# モデルを訓練データで訓練します
-model.fit(X_train, y_train)
-# モデルをシリアライズし、ファイルに保存します
-dump(model, sys.argv[1])
+# モデルをシリアライズし、ファイルに保存
+dump(model, "model.pkl")
