@@ -1,25 +1,18 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import pickle
-from sklearn.linear_model import LinearRegression
+from joblib import load
 
 # 保存したモデルを読み込む
-with open("artifact/model.pkl", "rb") as f:
-    model = pickle.load(f)
+model = load("model.pkl")
 
 # スライダーで入力を受け付ける関数
 def user_input_features():
-    square_meter = st.sidebar.slider("Square Meter", 0.0, 200.0, 30.0)
-    floor = st.sidebar.slider("Floor", 1, 20, 3)
-    year_from_built = st.sidebar.slider("Year from Built", 0, 100, 30)
-    distance_from_station = st.sidebar.slider("Distance from Station (m)", 0, 2000, 1000)
+    house_area = st.sidebar.slider("面積(m2)", 0.0, 200.0, 30.0)
+    distance = st.sidebar.slider("駅からの距離(m)", 1, 2000, 160)
 
     data = {
-        "square_meter": [square_meter],
-        "floor": [floor],
-        "year_from_built": [year_from_built],
-        "distance_from_station": [distance_from_station]
+        "house_area": [house_area],
+        "distance": [distance]
     }
 
     features = pd.DataFrame(data)
